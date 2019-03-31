@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./bubbleSort.js"></script>
+	<script src="./selectionSort.js"></script>
+	<script src="./insertSort.js"></script>
+	<script src="./mergeSort.js"></script>
+	<script src="./quickSort.js"></script>
+	<script src="./heapSort.js"></script>
+
+</head>
+<body>
+	
+</body>
+<script>
+	var list = [1,2,45,5,65,56,534,234,23];
+	console.info("before",list);
+
+	console.time("冒泡排序")
+	console.log(bubbleSort(list));
+	console.timeEnd("冒泡排序");
+	console.info("before",list);
+
+	console.time("选择排序")
+	console.log(selectionSort(list));
+	console.timeEnd("选择排序");
+	console.info("before",list);
+
+	console.time("插入排序")
+	console.log(insertSort(list));
+	console.timeEnd("插入排序");
+	console.info("before",list);
+
+	console.time("堆排序")
+	console.log(heapSort(list));
+	console.timeEnd("堆排序");
+	console.info("before",list);
+
+	console.time("归并排序")
+	console.log(mergeSort(list));
+	console.timeEnd("归并排序");
+	console.info("before",list);
+
+	console.time("快速排序")
+	console.log(quickSort(list));
+	console.timeEnd("快速排序");
+
+
+
+</script>
+</html>
