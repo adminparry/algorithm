@@ -16,13 +16,13 @@ const intersect = (nums1, nums2) => {
       map[n] = 1
     }
   }
-  console.log(map)
+
   for (let n of nums2) {
 
     if (map[n] > 0) {
 
       res.push(n)
-      // map[n]--
+      map[n]--
     }
   }
   return res
