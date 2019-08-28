@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+<script>
+    var menu = [
+        {id:1, parentId:0, text:'你好'},
+        {id:2, parentId:1, text:'你好'},
+        {id:3, parentId:2, text:'你好'},
+        {id:4, parentId:3, text:'你好'},
+        {id:5, parentId:3, text:'你好'},
+        {id:6, parentId:4, text:'你好'},
+        {id:7, parentId:4, text:'你好'},
+    ]
+
+    function treeUtil(arr){
+        if(arr.length < 2){
+            return arr;
+        }
+        var ret = [];
+        // 获取所有根节点
+        for(const item of arr){
+            if(item.parentId == 0){
+                ret.push(item);
+            }
+        }
+        // 给根节点添加子节点
+        for(const item of ret){
+            item.children = getChildNode(item.id, arr);
+
+        }
+        // 返回需要的数据
+        return ret;
+    }
+    function getChildNode(id, all){
+        const ret = [];
+        // 如果是子节点保存下来
+        for(const item of all){
+            if(item.parentId === id){
+                ret.push(item);
+            }
+        }
+        //递归下去
+        for(const item of ret){
+            item.children = getChildNode(item.id, all);
+        }
+        return ret;
+    }
+
+    console.log(treeUtil(menu));
+
+
+</script>
+</html>

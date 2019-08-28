@@ -7,5 +7,6 @@
 * [冒泡排序](./md/bubbleSort.md)
 * [快速排序](./md/quickSort.md)
 * [数组去重](./md/arrayUnique.md)
+* [平行结构转树形结构](./md/treeUtil.md)
 
 
