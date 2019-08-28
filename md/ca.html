@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>求两个数组的交集 · GitBook</title>
+        <title>排列组合 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="ca.html" />
+    <link rel="next" href="limit.html" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="intersection.html" />
     
 
     </head>
@@ -102,7 +102,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="intersection.html">
+        <li class="chapter " data-level="1.2" data-path="intersection.html">
             
                 <a href="intersection.html">
             
@@ -115,7 +115,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="ca.html">
+        <li class="chapter active" data-level="1.3" data-path="ca.html">
             
                 <a href="ca.html">
             
@@ -223,7 +223,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >求两个数组的交集</a>
+        <a href=".." >排列组合</a>
     </h1>
 </div>
 
@@ -238,36 +238,22 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x6C42;&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;">&#x6C42;&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x4EA4;&#x96C6;</h1>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> nums1 = [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>],
-    nums2 = [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>];
+                                <h1 id="&#x6392;&#x5217;&#x7EC4;&#x5408;">&#x6392;&#x5217;&#x7EC4;&#x5408;</h1>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">aaa</span>(<span class="hljs-params">arr,num</span>)</span>{
+    <span class="hljs-keyword">var</span> r = [];
+    (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">t,a,n</span>)</span>{
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>){
+            <span class="hljs-keyword">return</span> r.push(t);
+        }
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>,l = a.length; i &lt;= l - n; i++){
+            f(t.concat(a[i]), a.slice(i + <span class="hljs-number">1</span>), n - <span class="hljs-number">1</span>)
+        }
+    })([],arr,num)
 
-
-<span class="hljs-keyword">const</span> intersect = (nums1, nums2) =&gt; {
-  <span class="hljs-keyword">const</span> map = {}
-  <span class="hljs-keyword">const</span> res = []
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">in</span> nums1) {
-
-    <span class="hljs-keyword">if</span> (map[n]) {
-      map[n]++
-    } <span class="hljs-keyword">else</span> {
-      map[n] = <span class="hljs-number">1</span>
-    }
-  }
-
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> nums2) {
-
-    <span class="hljs-keyword">if</span> (map[n] &gt; <span class="hljs-number">0</span>) {
-
-      res.push(n)
-      map[n]--
-    }
-  }
-  <span class="hljs-keyword">return</span> res
+    <span class="hljs-keyword">return</span> r;
 }
-
-
-<span class="hljs-built_in">console</span>.log(intersect(nums1, nums2));
+aaa([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],<span class="hljs-number">2</span>)
+<span class="hljs-comment">//[[1,3],[1,4],[3,4]]</span>
 </code></pre>
 
                                 
@@ -296,12 +282,12 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="intersection.html" class="navigation navigation-prev " aria-label="Previous page: 求两个数组的交集">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="ca.html" class="navigation navigation-next " aria-label="Next page: 排列组合">
+                <a href="limit.html" class="navigation navigation-next " aria-label="Next page: 无穷调用">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -312,7 +298,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"求两个数组的交集","level":"1.2","depth":1,"next":{"title":"排列组合","level":"1.3","depth":1,"path":"md/ca.md","ref":"./md/ca.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/intersection.md","mtime":"2019-04-23T09:23:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-28T10:53:56.976Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"排列组合","level":"1.3","depth":1,"next":{"title":"无穷调用","level":"1.4","depth":1,"path":"md/limit.md","ref":"./md/limit.md","articles":[]},"previous":{"title":"求两个数组的交集","level":"1.2","depth":1,"path":"md/intersection.md","ref":"./md/intersection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/ca.md","mtime":"2019-05-09T06:38:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-28T10:53:56.976Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1,0 +1,388 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>数组去重 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="treeUtil.html" />
+    
+    
+    <link rel="prev" href="quickSort.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="intersection.html">
+            
+                <a href="intersection.html">
+            
+                    
+                    求两个数组的交集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="ca.html">
+            
+                <a href="ca.html">
+            
+                    
+                    排列组合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="limit.html">
+            
+                <a href="limit.html">
+            
+                    
+                    无穷调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="bubbleSort.html">
+            
+                <a href="bubbleSort.html">
+            
+                    
+                    冒泡排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="quickSort.html">
+            
+                <a href="quickSort.html">
+            
+                    
+                    快速排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="arrayUnique.html">
+            
+                <a href="arrayUnique.html">
+            
+                    
+                    数组去重
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="treeUtil.html">
+            
+                <a href="treeUtil.html">
+            
+                    
+                    平行结构转树形结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >数组去重</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x6570;&#x7EC4;&#x53BB;&#x91CD;">&#x6570;&#x7EC4;&#x53BB;&#x91CD;</h1>
+<h2 id="&#x5FAA;&#x73AF;&#x53BB;&#x91CD;1">&#x5FAA;&#x73AF;&#x53BB;&#x91CD;1</h2>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">unique</span>(<span class="hljs-params">arr</span>)</span>{
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;i &lt; arr.length;i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> j = i + <span class="hljs-number">1</span>; j &lt; arr.length; j++){
+            <span class="hljs-keyword">if</span>(arr[i] == arr[j]){
+                arr.splice(i, <span class="hljs-number">1</span>)
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> arr;
+}
+<span class="hljs-keyword">var</span> ret = unique([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">87</span>]);
+
+<span class="hljs-built_in">console</span>.log(ret)
+</code></pre>
+<h2 id="&#x5FAA;&#x73AF;&#x53BB;&#x91CD;2">&#x5FAA;&#x73AF;&#x53BB;&#x91CD;2</h2>
+<pre><code class="lang-javascript"><span class="hljs-built_in">Array</span>.prototype.distinct = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> ret = [];
+    <span class="hljs-keyword">var</span> i,j,len = arr.length;
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i &lt; len; i++){
+        <span class="hljs-keyword">for</span>(j = i + <span class="hljs-number">1</span>; j &lt; len; j++){
+            <span class="hljs-keyword">if</span>(arr[i] == arr[j]){
+                j = ++i;
+            }
+        }
+        ret.push(arr[i])
+    }
+    <span class="hljs-keyword">return</span> ret;
+}
+</code></pre>
+<h2 id="&#x5BF9;&#x8C61;&#x952E;&#x53BB;&#x91CD;">&#x5BF9;&#x8C61;&#x952E;&#x53BB;&#x91CD;</h2>
+<pre><code class="lang-javascript"><span class="hljs-built_in">Array</span>.prototype.distinct = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> ret = [];
+    <span class="hljs-keyword">var</span> json = {};
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++){
+        <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">Object</span>.hasOwnProperty.call(json, arr[i])){
+            json[arr[i]] = <span class="hljs-number">1</span>;
+            ret.push(arr[i]);
+        }
+    }
+    <span class="hljs-keyword">return</span> ret;
+}
+</code></pre>
+<h2 id="set&#x4E0D;&#x91CD;&#x590D;&#x53BB;&#x91CD;">set&#x4E0D;&#x91CD;&#x590D;&#x53BB;&#x91CD;</h2>
+<pre><code class="lang-javascript"><span class="hljs-built_in">Array</span>.prototype.distinct = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">this</span>;
+    <span class="hljs-comment">// return [...new Set(arr)]</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(arr));
+}
+</code></pre>
+<h2 id="indexof">indexOf</h2>
+<pre><code class="lang-javascript"><span class="hljs-built_in">Array</span>.prototype.distinct = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> ret = [];
+
+    arr.forEach((item, index) =&gt; {
+        <span class="hljs-keyword">var</span> bool = arr.indexOf(item, index + <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">if</span>(bool === <span class="hljs-number">-1</span>){
+            ret.push(item)
+        }
+    })
+
+    <span class="hljs-keyword">return</span> ret;
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="quickSort.html" class="navigation navigation-prev " aria-label="Previous page: 快速排序">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="treeUtil.html" class="navigation navigation-next " aria-label="Next page: 平行结构转树形结构">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"数组去重","level":"1.7","depth":1,"next":{"title":"平行结构转树形结构","level":"1.8","depth":1,"path":"md/treeUtil.md","ref":"./md/treeUtil.md","articles":[]},"previous":{"title":"快速排序","level":"1.6","depth":1,"path":"md/quickSort.md","ref":"./md/quickSort.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/arrayUnique.md","mtime":"2019-08-28T01:36:45.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-28T10:53:56.976Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
