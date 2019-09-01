@@ -18,6 +18,39 @@
         {id:7, parentId:4, text:'你好'},
     ]
 
+    ;(function f(n){
+        if(n == 0){
+
+            return;
+        }
+ 
+        for(let i = 0;i<n;i++){
+            console.log(i)
+            f( n - 1)
+        }
+    })(2)
+    function aaa(a,b){
+        let c = a,d = b;
+
+        function temp(num){
+            c *= num;
+            return temp;
+        }
+     
+        if(arguments.length == 1){
+            temp.toString = function(){
+                return c;
+            }
+            return temp
+        }else{
+            return a + b;
+        }
+        
+    }
+    function bbb(){
+        return arguments[0](20)(30) + arguments[0](10,50)
+    }
+    console.log(bbb(aaa))
     function treeUtil(arr){
         if(arr.length < 2){
             return arr;
