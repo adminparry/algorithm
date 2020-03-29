@@ -2,6 +2,11 @@
 
 ``` javascript
 Array.prototype.heapSort = function(){
+    var arr = this;
+    var len = arr.length;
+    if(len < 2){
+        return arr;
+    }
     function heapify(arr, i){
         var left = 2 * i + 1;
         var right = 2 * i + 2;
@@ -27,11 +32,7 @@ Array.prototype.heapSort = function(){
             heapify(arr,i);
         }
     }
-    var arr = this;
-    var len = arr.length;
-    if(len < 2){
-        return arr;
-    }
+    
     buildMaxHeap(arr);
     for(var i = arr.length - 1; i > 0; i--){
         swap(arr, 0, i);

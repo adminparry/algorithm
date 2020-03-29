@@ -1,92 +1,149 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
+<meta charset="utf-8">
+<title></title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+#box{ width:534px; height:300px; position:relative; margin:50px auto; overflow:hidden;}
+#box ul{ position:absolute; left:0; top:0;}
+#box ul li{ float:left; width:534px; height:300px;}
+#box ul li img{ height:300px;}
+
+#box a{ transition:.2s all ease;}
+#box .prev,#box .next{position:absolute;  top:50%; z-index:2; height:80px; line-height:80px; background:rgba(0,0,0,0.6); color:#fff; width:80px; text-align:center; margin-top:-40px; display:none;}
+#box .prev{ left:0;}
+#box .next{ right:0;}
+#box a:hover{ background:rgba(255,0,0,0.4);}
+
+#box ol{ position:absolute; width:120px; left:50%; margin-left:-60px; bottom:10px;}
+#box ol li{ width:20px; height:20px; background:#f60; float:left; margin:2px; text-align:center; text-indent:-9999px; border-radius:50%;}
+#box ol li.active{ background:#fff;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var oPrev=oBox.children[0];
+	var oNext=oBox.children[1];
+	var oUl=oBox.getElementsByTagName('ul')[0];
+	var aLi=oUl.children;
+	var oOl=oBox.getElementsByTagName('ol')[0];
+	var aBtn=oOl.children;
+	
+	//先复制一份
+	oUl.innerHTML+=oUl.innerHTML;
+	//算宽度
+	oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';
+	
+	var W=oUl.offsetWidth/2;
+	
+	//移入显示俩按钮
+	oBox.onmouseover=function(){
+		oPrev.style.display='block';
+		oNext.style.display='block';	
+	}
+	oBox.onmouseout=function(){
+		oPrev.style.display='none';
+		oNext.style.display='none';	
+	};
+	
+	var iNow=0;
+	
+	//选项卡
+	for(var i=0; i<aBtn.length; i++){
+		(function(index){
+			aBtn[i].onclick=function(){
+                //控制选项卡按钮
+				if(index==0 && iNow%aBtn.length==aBtn.length-1){
+					iNow++;
+				}
+				if(index==aBtn.length-1 && iNow%aBtn.length==0){
+					iNow--;
+				}
+				//控制左右按钮
+				if(iNow>0){
+					iNow=Math.floor(iNow/aBtn.length)*aBtn.length+index;
+				}else{
+					if(index==0 && iNow%aBtn.length==-1){
+						iNow++;	
+					}
+					iNow=Math.floor(iNow/aBtn.length)*aBtn.length+index;	
+				}
+				tab();
+				document.title=iNow;
+			}
+		})(i);
+	}
+	
+	function tab(){
+		for(var i=0; i<aBtn.length; i++){
+			aBtn[i].className='';
+		}
+		if(iNow<0){
+			aBtn[(iNow%aBtn.length+aBtn.length)%aBtn.length].className='active';
+		}else{
+			aBtn[iNow%aBtn.length].className='active';	
+		}
+		//oUl.style.left=-iNow*aLi[0].offsetWidth+'px';	
+		startMove(oUl,-iNow*aLi[0].offsetWidth);
+	}
+	
+	//点击
+	oNext.onclick=function(){
+		iNow++;
+		tab();
+		document.title=iNow;		
+	}	
+	
+	
+	oPrev.onclick=function(){
+		iNow--;
+		tab();
+		document.title=iNow;	
+	}
+	
+	var left=0;
+	function startMove(obj,iTarget){
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			var iSpeed=(iTarget-left)/8;
+			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+			
+			if(left==iTarget){
+				clearInterval(obj.timer);
+			}else{
+				left+=iSpeed;
+				if(left<0){
+					obj.style.left=left%W+'px';
+				}else{
+					obj.style.left=(left%W-W)%W+'px';	
+				}
+			}
+			
+		},30);
+	}
+}
+</script>
 </head>
 
 <body>
+<div id="box">
+	<a href="javascript:;" class="prev">prev</a>
+    <a href="javascript:;" class="next">next</a>
+	<ul>
+    	<li><img src="img/0.jpg"></li>
+    	<li><img src="img/1.jpg"></li>
+    	<li><img src="img/2.jpg"></li>
+    	<li><img src="img/3.jpg"></li>
+    	<li><img src="img/4.jpg"></li>
+    </ul>
+    <ol>
+    	<li class="active">0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+</div>
 </body>
-<script>
-    var menu = [
-        {id:1, parentId:0, text:'你好'},
-        {id:2, parentId:1, text:'你好'},
-        {id:3, parentId:2, text:'你好'},
-        {id:4, parentId:3, text:'你好'},
-        {id:5, parentId:3, text:'你好'},
-        {id:6, parentId:4, text:'你好'},
-        {id:7, parentId:4, text:'你好'},
-    ]
-
-    ;(function f(n){
-        if(n == 0){
-
-            return;
-        }
- 
-        for(let i = 0;i<n;i++){
-            console.log(i)
-            f( n - 1)
-        }
-    })(2)
-    function aaa(a,b){
-        let c = a,d = b;
-
-        function temp(num){
-            c *= num;
-            return temp;
-        }
-     
-        if(arguments.length == 1){
-            temp.toString = function(){
-                return c;
-            }
-            return temp
-        }else{
-            return a + b;
-        }
-        
-    }
-    function bbb(){
-        return arguments[0](20)(30) + arguments[0](10,50)
-    }
-    console.log(bbb(aaa))
-    function treeUtil(arr){
-        if(arr.length < 2){
-            return arr;
-        }
-        var ret = [];
-        // 获取所有根节点
-        for(const item of arr){
-            if(item.parentId == 0){
-                ret.push(item);
-            }
-        }
-        // 给根节点添加子节点
-        for(const item of ret){
-            item.children = getChildNode(item.id, arr);
-
-        }
-        // 返回需要的数据
-        return ret;
-    }
-    function getChildNode(id, all){
-        const ret = [];
-        // 如果是子节点保存下来
-        for(const item of all){
-            if(item.parentId === id){
-                ret.push(item);
-            }
-        }
-        //递归下去
-        for(const item of ret){
-            item.children = getChildNode(item.id, all);
-        }
-        return ret;
-    }
-
-    console.log(treeUtil(menu));
-
-
-</script>
 </html>
